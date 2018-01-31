@@ -13,6 +13,10 @@
 		A38E91F1201EC54F00F26A57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38E91F0201EC54F00F26A57 /* Assets.xcassets */; };
 		A38E91F4201EC54F00F26A57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38E91F2201EC54F00F26A57 /* LaunchScreen.storyboard */; };
 		A38E91F7201EC54F00F26A57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A38E91F6201EC54F00F26A57 /* main.m */; };
+		A38E9200201EF2FF00F26A57 /* ZTPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A38E91FF201EF2FF00F26A57 /* ZTPhotoBrowserViewController.m */; };
+		A38E9203201EF79F00F26A57 /* UIView+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A38E9202201EF79F00F26A57 /* UIView+extension.m */; };
+		A38E9206201EFD0600F26A57 /* ScrollMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A38E9204201EFD0600F26A57 /* ScrollMenuButton.m */; };
+		A38F6C1D2020171C001FACB5 /* PhotoVCParams.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F6C1C2020171C001FACB5 /* PhotoVCParams.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,15 @@
 		A38E91F3201EC54F00F26A57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A38E91F5201EC54F00F26A57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A38E91F6201EC54F00F26A57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A38E91FE201EF2FF00F26A57 /* ZTPhotoBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZTPhotoBrowserViewController.h; sourceTree = "<group>"; };
+		A38E91FF201EF2FF00F26A57 /* ZTPhotoBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZTPhotoBrowserViewController.m; sourceTree = "<group>"; };
+		A38E9201201EF79F00F26A57 /* UIView+extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+extension.h"; sourceTree = "<group>"; };
+		A38E9202201EF79F00F26A57 /* UIView+extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+extension.m"; sourceTree = "<group>"; };
+		A38E9204201EFD0600F26A57 /* ScrollMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollMenuButton.m; sourceTree = "<group>"; };
+		A38E9205201EFD0600F26A57 /* ScrollMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollMenuButton.h; sourceTree = "<group>"; };
+		A38E9207201EFD9C00F26A57 /* ZTPhotoBrowserGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZTPhotoBrowserGlobal.h; sourceTree = "<group>"; };
+		A38F6C1B2020171C001FACB5 /* PhotoVCParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoVCParams.h; sourceTree = "<group>"; };
+		A38F6C1C2020171C001FACB5 /* PhotoVCParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoVCParams.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +71,7 @@
 		A38E91E6201EC54F00F26A57 /* ZTPhotoBrowser-Objc */ = {
 			isa = PBXGroup;
 			children = (
+				A38E91FD201EEF0D00F26A57 /* ZTPhotoBrowser */,
 				A38E91E7201EC54F00F26A57 /* AppDelegate.h */,
 				A38E91E8201EC54F00F26A57 /* AppDelegate.m */,
 				A38E91EA201EC54F00F26A57 /* ViewController.h */,
@@ -69,6 +83,22 @@
 				A38E91F6201EC54F00F26A57 /* main.m */,
 			);
 			path = "ZTPhotoBrowser-Objc";
+			sourceTree = "<group>";
+		};
+		A38E91FD201EEF0D00F26A57 /* ZTPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				A38E9207201EFD9C00F26A57 /* ZTPhotoBrowserGlobal.h */,
+				A38E9201201EF79F00F26A57 /* UIView+extension.h */,
+				A38E9202201EF79F00F26A57 /* UIView+extension.m */,
+				A38E9205201EFD0600F26A57 /* ScrollMenuButton.h */,
+				A38E9204201EFD0600F26A57 /* ScrollMenuButton.m */,
+				A38E91FE201EF2FF00F26A57 /* ZTPhotoBrowserViewController.h */,
+				A38E91FF201EF2FF00F26A57 /* ZTPhotoBrowserViewController.m */,
+				A38F6C1B2020171C001FACB5 /* PhotoVCParams.h */,
+				A38F6C1C2020171C001FACB5 /* PhotoVCParams.m */,
+			);
+			path = ZTPhotoBrowser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +172,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A38E9206201EFD0600F26A57 /* ScrollMenuButton.m in Sources */,
+				A38E9200201EF2FF00F26A57 /* ZTPhotoBrowserViewController.m in Sources */,
 				A38E91EC201EC54F00F26A57 /* ViewController.m in Sources */,
 				A38E91F7201EC54F00F26A57 /* main.m in Sources */,
+				A38F6C1D2020171C001FACB5 /* PhotoVCParams.m in Sources */,
 				A38E91E9201EC54F00F26A57 /* AppDelegate.m in Sources */,
+				A38E9203201EF79F00F26A57 /* UIView+extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
