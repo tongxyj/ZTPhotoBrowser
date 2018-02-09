@@ -27,9 +27,7 @@
 }
 - (IBAction)didPressedTypeOne:(id)sender {
     ZTPhotoBrowserViewController *vc = [[ZTPhotoBrowserViewController alloc] init];
-    PhotoVCParams *params = [[PhotoVCParams alloc] init];
-    params.browserVCType = ZTPhotoBrowserVCTypeCategory;
-    vc.photoParams = params;
+    vc.browserVCType = ZTPhotoBrowserVCTypeCategory;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

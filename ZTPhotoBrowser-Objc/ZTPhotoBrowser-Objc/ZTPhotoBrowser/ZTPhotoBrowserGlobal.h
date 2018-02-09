@@ -8,15 +8,20 @@
 
 #ifndef ZTPhotoBrowserGlobal_h
 #define ZTPhotoBrowserGlobal_h
+
 typedef NS_ENUM(NSInteger, ZTPhotoBrowserVCType) {
     ZTPhotoBrowserVCTypePlain = 0,
     ZTPhotoBrowserVCTypeCategory
 };
+
 #define RGBA(r,g,b,a)                        [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:a]
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 
-#define PhotoTypeArray @[@"全部", @"外景", @"内景设施", @"房间", @"周边其他"]
+#define widthOfItems (SCREEN_WIDTH - 30) / 2
+#define heightOfItems widthOfItems * 3 / 4
+
+#define PhotoTypeArray @[@"One", @"Two", @"Three", @"Four", @"Five"]
 #define TopCategoryListHeight 50
 #define PhotoTypeCount 5
 

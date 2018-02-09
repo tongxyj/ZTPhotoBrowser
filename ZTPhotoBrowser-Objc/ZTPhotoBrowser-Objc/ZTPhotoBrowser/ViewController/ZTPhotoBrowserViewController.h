@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PhotoVCParams.h"
+#import "ZTPhotoBrowserGlobal.h"
 @interface ZTPhotoBrowserViewController : UIViewController
-@property (nonatomic, strong) PhotoVCParams *photoParams;
+@property (nonatomic, assign) ZTPhotoBrowserVCType browserVCType;
 @end
