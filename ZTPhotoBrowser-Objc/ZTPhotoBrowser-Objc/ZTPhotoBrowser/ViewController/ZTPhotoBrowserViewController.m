@@ -24,6 +24,9 @@ static NSString *sResuseCollectionId = @"ZTPhotoCategoryCell";
 @property (nonatomic, strong) NSMutableArray *arrMenuBtn;//存放顶部相册类型按钮
 @property (nonatomic, weak) UIButton *btnPreMenuType;//前一个选中的类型按钮
 @property (nonatomic, weak) UICollectionView *collectionPhotoList;//图片视图列表
+@property (nonatomic, weak) UIScrollView *scrollTopCategory;//顶部相册类型
+@property (nonatomic, weak) ScrollMenuLineView *vMenuLine;//相册类型头部滑动条
+@property (nonatomic, assign) NSInteger currentAlbumIndex;//当前选中的相册索引
 
 @end
 
@@ -58,19 +61,20 @@ static NSString *sResuseCollectionId = @"ZTPhotoCategoryCell";
  * 配置collectionView
  */
 - (void)setupCollectionView {
+    CGFloat fCollPhotoListY = [self topLayoutConstraint] + TopCategoryListHeight;
+    CGFloat fCollPhotoListHeight = SCREEN_HEIGHT - TopCategoryListHeight - [self topLayoutConstraint];
     //创建布局
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    CGFloat fCollPhotoListY = [self topLayoutConstraint] + TopCategoryListHeight;
-    UICollectionView *collectionPhotoList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, fCollPhotoListY, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:flowLayout];
-    self.collectionPhotoList = collectionPhotoList;
-    collectionPhotoList.dataSource = self;
-    collectionPhotoList.delegate = self;
     flowLayout.minimumLineSpacing = 0;
     flowLayout.minimumInteritemSpacing = 0;
-    flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT - 119);
+    flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH, fCollPhotoListHeight);
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
+    UICollectionView *collectionPhotoList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, fCollPhotoListY, SCREEN_WIDTH, fCollPhotoListHeight) collectionViewLayout:flowLayout];
+    self.collectionPhotoList = collectionPhotoList;
+    collectionPhotoList.dataSource = self;
+    collectionPhotoList.delegate = self;
     collectionPhotoList.collectionViewLayout = flowLayout;
     collectionPhotoList.backgroundColor = [UIColor groupTableViewBackgroundColor];
     collectionPhotoList.pagingEnabled = YES;
@@ -81,12 +85,11 @@ static NSString *sResuseCollectionId = @"ZTPhotoCategoryCell";
 - (void)setupTopCategoryList {
     UIView *topContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, [self topLayoutConstraint], SCREEN_WIDTH, TopCategoryListHeight)];
     UIScrollView *categoryScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, TopCategoryListHeight)];
+    self.scrollTopCategory = categoryScroll;
     //创建顶部button
-    CGFloat buttonWidth = SCREEN_WIDTH / PhotoTypeCount;
+    CGFloat buttonWidth = SCREEN_WIDTH / 5;
     ScrollMenuButton *button = nil;
-    self.arrMenuBtn = [NSMutableArray arrayWithCapacity:PhotoTypeCount];
-
-    for (int i = 0; i < PhotoTypeCount; ++i) {
+    for (int i = 0; i < PhotoTypeArray.count; ++i) {
         button = [[ScrollMenuButton alloc] initWithFrame:CGRectMake(i * buttonWidth, 3, buttonWidth, TopCategoryListHeight) titile: [PhotoTypeArray objectAtIndex:i] number:@"0"];
         [button addTarget:self action:@selector(didSelectPhotoMenuButton:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = i + 100;
@@ -96,16 +99,26 @@ static NSString *sResuseCollectionId = @"ZTPhotoCategoryCell";
         }
         [self.arrMenuBtn addObject:button];
         [categoryScroll addSubview:button];
+        //创建顶部滑动条
+        ScrollMenuLineView *lineView = [ScrollMenuLineView initScrollMenuLineView];
+        lineView.frame = CGRectMake(0, CGRectGetMaxY(button.frame), buttonWidth, 3);
+        self.vMenuLine = lineView;
+        
+        UIView *subLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, lineView.width - 20, 3)];
+        subLineView.centerX = lineView.centerX;
+        subLineView.backgroundColor = def_text_TopCategoryLineBlue;
+        [lineView addSubview:subLineView];
+        
+        [self.scrollTopCategory addSubview:lineView];
     }
-    
+    categoryScroll.contentSize = CGSizeMake(buttonWidth * PhotoTypeArray.count , 0);
     [topContainerView addSubview:categoryScroll];
     [self.view addSubview:topContainerView];
 }
 
-
 #pragma mark - 数据源方法
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 5;
+    return PhotoTypeArray.count;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 1;
@@ -125,21 +138,64 @@ static NSString *sResuseCollectionId = @"ZTPhotoCategoryCell";
  * 点击顶部价格策类型按钮
  */
 - (void)didSelectPhotoMenuButton:(UIButton *)sender {
+        [self.collectionPhotoList setContentOffset:CGPointMake((sender.tag - 100) *SCREEN_WIDTH, 0) animated:YES];
+    if (sender.tag - 100 == (PhotoTypeArray.count / 2 - 1) + 1) {
+        [self.scrollTopCategory setContentOffset:CGPointMake(80, 0) animated:YES];
+    } else if (sender.tag - 100 == (PhotoTypeArray.count / 2 - 1)) {
+        [self.scrollTopCategory setContentOffset:CGPointMake(0, 0) animated:YES];
+    }
+        self.btnPreMenuType.selected = NO;
+        sender.selected = YES;
+        self.currentAlbumIndex = sender.tag  - 100;
+        self.btnPreMenuType = sender;
+}
+#pragma mark -
+#pragma mark --------------------------UIScrollViewDelegate---------------------------
+#pragma mark -
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    //    [self.collectionPhoto setContentOffset:CGPointMake((sender.tag - 100) *SCREEN_WIDTH, 0) animated:YES];
-    //    self.btnPreMenuType.selected = NO;
-    //    sender.selected = YES;
-    //    self.currentAlbumIndex = sender.tag  - 100;
-    //    self.btnPreMenuType = sender;
+    CGFloat moveX = self.vMenuLine.width * (scrollView.contentOffset.x / SCREEN_WIDTH);
+    self.currentAlbumIndex = self.collectionPhotoList.contentOffset.x / self.collectionPhotoList.bounds.size.width;
+    if (moveX >= 0) {
+        [UIView animateWithDuration:0.1 animations:^{
+            self.vMenuLine.x =  moveX;
+        }];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    // 更新当前选中的索引
+    [self updatePhotoTypeIndex:scrollView];
+}
+/**
+ * 更新当前选中的索引
+ */
+- (void)updatePhotoTypeIndex:(UIScrollView *)scrollView {
+    
+    self.currentAlbumIndex = scrollView.contentOffset.x / scrollView.bounds.size.width;
+    ScrollMenuButton *currentBtn = nil;
+    if (self.currentAlbumIndex < self.arrMenuBtn.count) {
+        currentBtn = [self.arrMenuBtn objectAtIndex:self.currentAlbumIndex];
+    }
+    self.btnPreMenuType.selected = NO;
+    currentBtn.selected = YES;
+    self.btnPreMenuType = currentBtn;
+    if (self.currentAlbumIndex == (PhotoTypeArray.count / 2 - 1) + 1) {
+        [self.scrollTopCategory setContentOffset:CGPointMake(80, 0) animated:YES];
+    } else if (self.currentAlbumIndex == (PhotoTypeArray.count / 2 - 1)) {
+        [self.scrollTopCategory setContentOffset:CGPointMake(0, 0) animated:YES];
+    }
 }
 -(CGFloat)topLayoutConstraint {
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];//状态栏
     CGRect rectNav = self.navigationController.navigationBar.frame;//导航栏
     return rectStatus.size.height + rectNav.size.height;
 }
+
 - (NSMutableArray *)arrMenuBtn {
     if (_arrMenuBtn == nil) {
-        _arrMenuBtn = [NSMutableArray arrayWithCapacity:PhotoTypeCount];
+        _arrMenuBtn = [NSMutableArray arrayWithCapacity:PhotoTypeArray.count];
     }
     return _arrMenuBtn;
 }

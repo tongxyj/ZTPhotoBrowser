@@ -2,7 +2,7 @@
 //  ScrollMenuButton.m
 //  CarBaDa
 //
-//  Created by zhaitong on 17/4/6.
+//  Created by zhaitong on 2018/1/29.
 //  Copyright © 2017年 zhaitong. All rights reserved.
 //
 
@@ -63,7 +63,7 @@
 }
 
 
-+ (instancetype)initHotelScrollMenuLineView {
++ (instancetype)initScrollMenuLineView {
     ScrollMenuLineView *view = [[ScrollMenuLineView alloc] init];
     return view;
 }

@@ -21,12 +21,12 @@ typedef NS_ENUM(NSInteger, ZTPhotoBrowserVCType) {
 #define widthOfItems (SCREEN_WIDTH - 30) / 2
 #define heightOfItems widthOfItems * 3 / 4
 
-#define PhotoTypeArray @[@"One", @"Two", @"Three", @"Four", @"Five"]
+#define PhotoTypeArray @[@"One", @"Two", @"Three", @"Four", @"Five",@"Six"]
 #define TopCategoryListHeight 50
-#define PhotoTypeCount 5
 
 #define font_TopCategoryTitle                       [UIFont systemFontOfSize:14.f]
 #define font_Hint                                            [UIFont systemFontOfSize:12.f]
 #define def_text_TopCategoryNormal            RGBA(51,51,51,1)
-#define def_text_TopCategorySelected          RGBA(68,138,255,1)
+#define def_text_TopCategorySelected         RGBA(68,138,255,1)
+#define def_text_TopCategoryLineBlue         RGBA(68,138,255,1)
 #endif /* ZTPhotoBrowserGlobal_h */

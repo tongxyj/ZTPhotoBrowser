@@ -2,7 +2,7 @@
 //  ScrollMenuButton.h
 //  CarBaDa
 //
-//  Created by zhaitong on 17/4/6.
+//  Created by zhaitong on 2018/1/29.
 //  Copyright © 2017年 zhaitong. All rights reserved.
 //
 
@@ -15,7 +15,7 @@
 
 @interface ScrollMenuLineView : UIView
 
-+ (instancetype)initHotelScrollMenuLineView;
++ (instancetype)initScrollMenuLineView;
 @property (nonatomic, assign) CGFloat lineWidth;
 
 @end

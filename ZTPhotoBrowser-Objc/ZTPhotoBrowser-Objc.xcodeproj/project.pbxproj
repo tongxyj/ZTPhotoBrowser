@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A36F50BA203018F600B397AE /* PhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = A36F50B8203018F600B397AE /* PhotoBrowserView.m */; };
 		A38E91E9201EC54F00F26A57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A38E91E8201EC54F00F26A57 /* AppDelegate.m */; };
 		A38E91EC201EC54F00F26A57 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A38E91EB201EC54F00F26A57 /* ViewController.m */; };
 		A38E91EF201EC54F00F26A57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38E91ED201EC54F00F26A57 /* Main.storyboard */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A36F50B8203018F600B397AE /* PhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserView.m; sourceTree = "<group>"; };
+		A36F50B9203018F600B397AE /* PhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserView.h; sourceTree = "<group>"; };
 		A38E91E4201EC54F00F26A57 /* ZTPhotoBrowser-Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ZTPhotoBrowser-Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38E91E7201EC54F00F26A57 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A38E91E8201EC54F00F26A57 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 			children = (
 				A3A83D54202D3FA70052C1E6 /* ScrollMenuButton.h */,
 				A3A83D53202D3FA70052C1E6 /* ScrollMenuButton.m */,
+				A36F50B9203018F600B397AE /* PhotoBrowserView.h */,
+				A36F50B8203018F600B397AE /* PhotoBrowserView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				A3A83D5D202D3FA80052C1E6 /* ZTPhotoCategoryCell.m in Sources */,
 				A3A83D5C202D3FA80052C1E6 /* ScrollMenuButton.m in Sources */,
 				A38E91EC201EC54F00F26A57 /* ViewController.m in Sources */,
+				A36F50BA203018F600B397AE /* PhotoBrowserView.m in Sources */,
 				A3A83D61202D42450052C1E6 /* UICollectionView+CustomCell.m in Sources */,
 				A3A83D5B202D3FA80052C1E6 /* ZTPhotoCategoryViewController.m in Sources */,
 				A3A83D59202D3FA80052C1E6 /* UIView+extension.m in Sources */,
@@ -373,6 +379,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UC8DEUB2KQ;
 				INFOPLIST_FILE = "ZTPhotoBrowser-Objc/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ztphotobrowser.ZTPhotoBrowser-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -387,6 +394,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UC8DEUB2KQ;
 				INFOPLIST_FILE = "ZTPhotoBrowser-Objc/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ztphotobrowser.ZTPhotoBrowser-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";

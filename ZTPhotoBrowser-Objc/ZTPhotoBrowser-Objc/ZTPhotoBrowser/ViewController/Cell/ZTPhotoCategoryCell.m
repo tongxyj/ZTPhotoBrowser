@@ -19,6 +19,6 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.photoCategoryVC.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 119);
+    self.photoCategoryVC.view.frame = self.bounds;
 }
 @end
