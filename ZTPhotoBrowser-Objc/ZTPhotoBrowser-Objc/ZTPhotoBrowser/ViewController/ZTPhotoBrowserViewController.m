@@ -46,7 +46,7 @@ static NSString *sResuseCollectionId = @"ZTPhotoCategoryCell";
 }
 - (void)setupBaseView {
     self.view.backgroundColor = [UIColor whiteColor];
-//    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 - (void)setupTopView {
     switch (self.browserVCType) {
